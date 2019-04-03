@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ExcerciseRepository extends CrudRepository<Excercise, Long> {
 
-	List<Excercise> FindByName(String name);
+	List<Excercise> findById(String name);
 }
