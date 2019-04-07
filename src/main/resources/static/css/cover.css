@@ -27,8 +27,9 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #333;
-  background-image: url("../image/cover.jpeg");
+  background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+}
 }
 
 body {
@@ -58,7 +59,7 @@ body {
 
 .masthead-brand {
   margin-bottom: 0;
-  
+  color: #fff;
 }
 
 .nav-masthead .nav-link {
@@ -98,6 +99,7 @@ body {
  */
 .cover {
   padding: 0 1.5rem;
+   color: #fff;
 }
 .cover .btn-lg {
   padding: .75rem 1.25rem;

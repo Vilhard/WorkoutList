@@ -1,0 +1,103 @@
+.article-list_container {
+	margin-top: 25px;
+	margin-bottom: 60px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2), 0 2px 2px 0
+		rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .12);
+}
+
+.article-list_segment {
+	box-sizing: border-box;
+	line-height: 1.42857143;
+	color: #333;
+}
+
+.article-list_titlebar {
+	align-items: center;
+	box-sizing: border-box;
+	line-height: 1.42857143;
+	color: #333;
+	flex-wrap: wrap;
+	padding-top: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+	font-family: 'Montserrat';
+	font-size: 18px;
+}
+
+.article-list_content-wrapper {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: rgb(225, 225, 225);
+	box-sizing: border-box;
+	font-size: 18px;
+	line-height: 1.42857143;
+	color: #333;
+}
+
+.article-list_content-container {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: rgb(225, 225, 225);
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-bottom: 0px;
+	padding-left: 20px;
+	flex-direction: row;
+	font-size: 18px;
+	box-sizing: border-box;
+	line-height: 1.42857143;
+	color: #333;
+}
+
+th, td {
+	width: 150px;
+	text-align: center;
+	padding: 5px
+}
+
+.article-workout_exercise-info {
+	box-sizing: border-box;
+	color: #333;
+	box-sizing: border-box;
+	font-family: 'Montserrat';
+	font-size: 18px;
+	line-height: 1em;
+}
+
+.article-workout_exercise-title {
+	background-color: transparent;
+	box-sizing: border-box;
+	color: #33b1ef;
+	text-decoration: none;
+	text-decoration-line: none;
+	text-decoration-style: initial;
+	text-decoration-color: initial;
+	display: block;
+	padding-top: 6px;
+	padding-right: 0px;
+	padding-bottom: 6px;
+	padding-left: 0px;
+	line-height: 1em;
+	box-sizing: border-box;
+	outline-color: initial;
+	outline-style: initial;
+	outline-width: 0px;
+}
+
+.article-workout_sets-definition {
+	box-sizing: border-box;
+	margin-top: 10px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	margin-left: 0px;
+	line-height: 1em;
+	font-family: 'Montserrat';
+	font-size: 15px;
+	color: #333;
+	box-sizing: border-box;
+}

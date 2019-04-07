@@ -9,26 +9,41 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="mystyle.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+<link href="https://fonts.googleapis.com/css?family=Montserrat"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-	<nav class="navbar navbar-light bg-light">
+	<nav class="navbar navbar-dark bg-primary ">
 		<span class="navbar-brand mb-0 h1">MyFitnessLife</span>
+		<a href="/add" class="btn btn-primary navbar-brand mb-0 h1">Add Excercise</a>
 	</nav>
-	<div>
-		 <img th:src="@{/image/Banneri.jpg}"/>
-	</div>
 	<div class="container">
-		<div id="content">
-			<div class="col">
-				<h1>This is the Layout's main section</h1>
-				<p>This content will be replaced if the page using the layout
-					also defines a layout:fragment="content" segment.</p>
+		<div class="article-list_container">
+			<div
+				class="article-list_segment article-list_titlebar article-list_content-wrapper">
+				<table>
+					<thead>
+						<tr>
+							<th class="article-list_titlebar">Day</th>
+							<th class="article-list_titlebar">Excercise</th>
+							<th class="article-list_titlebar">Sets</th>
+							<th class="article-list_titlebar">Reps</th>
+						</tr>
+					</thead>
+					<tr th:each="excercise : ${excercises}">
+						<td  class="article-workout_sets-definition" th:text="${excercise.weekday.day}"></td>
+						<td class="article-workout_exercise-title"
+							th:text="${excercise.name}"></td>
+						<td class="article-workout_exercise-info "
+							th:text="${excercise.sets}"></td>
+						<td th:text="${excercise.reps}"></td>
+						<td><a th:href="@{/delete/{id}(id=${excercise.id})}"  class="btn btn-outline-danger btn-sm">Delete</a></td>
+				</table>
 			</div>
 		</div>
 	</div>
-	<footer> This content will remain, but other content will be
-		inserted after it. </footer>
 </body>
 </html>
