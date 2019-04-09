@@ -26,7 +26,6 @@ public class Excercise {
 	public Excercise(){}
 	
 	public Excercise(String name, int sets, int reps, Weekday weekday){
-		super();
 		this.name = name;
 		this.sets = sets;
 		this.reps = reps;
@@ -72,6 +71,5 @@ public class Excercise {
 				+ "]";
 	}
 	
-	
-	
+
 }
