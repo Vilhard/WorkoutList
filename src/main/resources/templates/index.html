@@ -18,7 +18,7 @@
 <body>
 	<nav class="navbar navbar-dark bg-primary ">
 		<span class="navbar-brand mb-0 h1">MyFitnessLife</span>
-		<a href="/add" class="btn btn-primary navbar-brand mb-0 h1">Add Excercise</a>
+		<a href="/add" class="btn btn-primary navbar-brand mb-0 h1">Add Exercise</a>
 	</nav>
 	<div class="container">
 		<div class="article-list_container">
@@ -28,19 +28,19 @@
 					<thead>
 						<tr>
 							<th class="article-list_titlebar">Day</th>
-							<th class="article-list_titlebar">Excercise</th>
+							<th class="article-list_titlebar">Exercise</th>
 							<th class="article-list_titlebar">Sets</th>
 							<th class="article-list_titlebar">Reps</th>
 						</tr>
 					</thead>
-					<tr th:each="excercise : ${excercises}">
-						<td  class="article-workout_sets-definition" th:text="${excercise.weekday.day}"></td>
+					<tr th:each="exercise : ${exercises}">
+						<td  class="article-workout_sets-definition" th:text="${exercise.weekday}"></td>
 						<td class="article-workout_exercise-title"
-							th:text="${excercise.name}"></td>
+							th:text="${exercise.name}"></td>
 						<td class="article-workout_exercise-info "
-							th:text="${excercise.sets}"></td>
-						<td th:text="${excercise.reps}"></td>
-						<td><a th:href="@{/delete/{id}(id=${excercise.id})}"  class="btn btn-outline-danger btn-sm">Delete</a></td>
+							th:text="${exercise.sets}"></td>
+						<td th:text="${exercise.reps}"></td>
+						<td><a th:href="@{/delete/{id}(id=${exercise.id})}"  class="btn btn-outline-danger btn-sm">Delete</a></td>
 				</table>
 			</div>
 		</div>

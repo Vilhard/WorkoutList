@@ -32,9 +32,9 @@
 							</div>
 							<div class="form-label-group">
 								<label for="daylist">Day</label> <select id="daylist"
-									th:field="*{weekday}" class="form-control">
-									<option th:each="weekday: ${weekday}"
-										th:value="${weekday.weekdayid}" th:text="${weekday.day}"></option>
+								 th:field="*{weekday}" class="form-control">
+									<option th:each="weekday: ${weekdays}"
+										th:value="${weekday}" th:text="${weekday}"></option>
 								</select>
 							</div>
 							<input type="submit" class="btn btn-primary " value="Save"></input>

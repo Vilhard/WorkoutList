@@ -1,5 +1,8 @@
 package com.example.workoutlist.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,20 +13,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.workoutlist.domain.Excercise;
-import com.example.workoutlist.domain.ExcerciseRepository;
-import com.example.workoutlist.domain.WeekdayRepository;
+
+import com.example.workoutlist.domain.Exercise;
+import com.example.workoutlist.domain.ExercisePojo;
+import com.example.workoutlist.domain.ExerciseRepository;
+import com.example.workoutlist.domain.Weekday;
+
 
 @Controller
 public class WorkoutController {
 
 	@Autowired
-	private ExcerciseRepository erepository;
+	private ExerciseRepository erepository;
 
-	@Autowired
-	private WeekdayRepository wdrepository;
+	
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@RequestMapping(value ="/home", method = RequestMethod.GET)
 	public ModelAndView home() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("home");
@@ -37,24 +42,66 @@ public class WorkoutController {
 
 	@RequestMapping("/index")
 	public String index(Model model) {
-		model.addAttribute("excercises", erepository.findAll());
+		List<Exercise> exercises = erepository.findAllOrderByWeekdayid();
+		model.addAttribute("exercises", exercise2exercisePojo(exercises));
 		return "index";
 	}
+	
+	private List<ExercisePojo>exercise2exercisePojo(List<Exercise> exercises){
+		List<ExercisePojo> returnList = new ArrayList<>();
+		for(Exercise e: exercises) {
+		 ExercisePojo pojo = new ExercisePojo();
+		 pojo.setId(e.getId());
+		 pojo.setName(e.getName());
+		 pojo.setReps(e.getReps());
+		 pojo.setSets(e.getSets());
+		 pojo.setWeekday(Weekday.getByValue(e.getDay()));
+		 returnList.add(pojo);
+		}
+		return returnList;
+	};
 
+	
 	@RequestMapping(value = "/add")
-	public String addExcercise(Model model) {
-		model.addAttribute("excercise", new Excercise());
-		model.addAttribute("weekday", wdrepository.findAll());
+	public String addExercise(Model model) {
+		//Create new List<String>
+		List<String> weekdays = new ArrayList<>();
+		model.addAttribute("excercise", new ExercisePojo());
+		weekdays.add("Maanantai");
+		weekdays.add("Tiistai");
+		weekdays.add("Keskiviikko");
+		weekdays.add("Torstai");
+		weekdays.add("Perjantai");
+		weekdays.add("Lauantai");
+		weekdays.add("Sunnuntai");
+		model.addAttribute("weekdays", weekdays);
 		return "add";
 	}
 
+	/*
+	 *Save excercise to database 
+	 *Syso's for null check
+	 */
 	@PostMapping("/save")
-	public String save(Excercise excercise) {
-		erepository.save(excercise);
+	public String save(ExercisePojo exercise) {
+	Exercise exerciseee = exercisePojo2exercise(exercise);
+		erepository.save(exerciseee);
 		return "redirect:index";
 	}
-
-	// Delete Excercise
+	/*
+	 *Map ExcerciePojo to Entity
+	 */
+	private Exercise exercisePojo2exercise(ExercisePojo excercise){
+		 Exercise exe = new Exercise();
+		 exe.setId(excercise.getId());
+		 exe.setName(excercise.getName());
+		 exe.setReps(excercise.getReps());
+		 exe.setSets(excercise.getSets());
+		 exe.setDay(Weekday.getByName(excercise.getWeekday()));
+		return exe;
+	};
+	
+	// Delete Excercise by id
 	@GetMapping("/delete/{id}")
 	public String deleteBook(@PathVariable("id") Long id, Model model) {
 		erepository.deleteById(id);
