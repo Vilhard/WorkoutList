@@ -78,19 +78,18 @@ public class WorkoutController {
 		return "add";
 	}
 
-	/*
-	 *Save excercise to database 
-	 *Syso's for null check
-	 */
+	
+	 
+	
+	//	Save exercise to database 
 	@PostMapping("/save")
 	public String save(ExercisePojo exercise) {
 	Exercise exerciseee = exercisePojo2exercise(exercise);
 		erepository.save(exerciseee);
 		return "redirect:index";
 	}
-	/*
-	 *Map ExcerciePojo to Entity
-	 */
+	
+	 //	Map ExcerciePojo to Entity
 	private Exercise exercisePojo2exercise(ExercisePojo excercise){
 		 Exercise exe = new Exercise();
 		 exe.setId(excercise.getId());
@@ -101,7 +100,7 @@ public class WorkoutController {
 		return exe;
 	};
 	
-	// Delete Excercise by id
+	// Delete Exercise by id
 	@GetMapping("/delete/{id}")
 	public String deleteBook(@PathVariable("id") Long id, Model model) {
 		erepository.deleteById(id);
