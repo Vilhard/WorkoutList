@@ -38,6 +38,4 @@ public class ExercisePojo {
 	public void setWeekday(String weekday) {
 		this.weekday = weekday;
 	}
-	
-	
 }

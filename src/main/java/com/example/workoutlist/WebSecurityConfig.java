@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers("/", "/css/**", "/home").permitAll() // Enable css when logged out
-				.and().authorizeRequests().antMatchers("/h2-console/**").permitAll().anyRequest().authenticated().and()
+				.anyRequest().authenticated().and()
 				.formLogin().loginPage("/login").defaultSuccessUrl("/index").permitAll().and().logout().permitAll()
 				.invalidateHttpSession(true);
 

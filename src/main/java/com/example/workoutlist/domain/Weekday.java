@@ -13,6 +13,9 @@ public enum Weekday {
 		return numVal;
 	}
 	
+	/* Methods to map enum numVal with 
+	 * weekday name for exercise order */
+	
 	public static String getByValue(Long value) {
 		if (value == null)
 			return null;

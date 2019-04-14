@@ -15,18 +15,14 @@ public class Exercise {
 	private int sets, reps;
 	private Long weekdayid;
 	
-	
-	
 	public Exercise(){}
 	
-
 	public Exercise(String name, int sets, int reps, Long weekdayid) {
 		this.name = name;
 		this.sets = sets;
 		this.reps = reps;
 		this.weekdayid = weekdayid;
 	}
-
 
 	public Long getDay() {
 		return weekdayid;
@@ -60,5 +56,4 @@ public class Exercise {
 	public void setReps(int reps) {
 		this.reps = reps;
 	}
-	
 }

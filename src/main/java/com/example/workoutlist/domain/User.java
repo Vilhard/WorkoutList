@@ -21,7 +21,6 @@ public class User {
     @Column(name = "password", nullable = false)
     private String passwordHash;
     
-  
     @Column(name = "role", nullable = false)
     private String role;
 
@@ -35,7 +34,6 @@ public class User {
 		this.role = role;
 	}
 
-	
 	public Long getId() {
 		return id;
 	}
@@ -60,14 +58,11 @@ public class User {
 		this.passwordHash = passwordHash;
 	}
 	
-
 	public String getRole() {
 		return role;
 	}
 	
-
 	public void setRole(String role) {
 		this.role = role;
-	}
-     
+	} 
 }
