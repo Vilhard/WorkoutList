@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Add Excercise</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -15,29 +14,31 @@
 			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
 				<div class="card card-signin my-5">
 					<div class="card-body">
-						<h5 class="card-title text-center">Add Exercise</h5>
-						<form class="form-signin" th:object="${exercise}"
-							th:action="@{save}" action="#" method="post">
+						<h5 class="card-title text-center">Edit Exercise</h5>
+						<form class="form-signin" th:object="${exercisepojo}"
+							th:action="@{../save}" action="#" method="post">
+			
 							<div class="form-label-group">
-								<label for="name">Name of the Exercise</label> <input
+							<input type="hidden" th:field="*{id}" class="form-control" />
+								<label for="name">Edit exercise name</label> <input
 									class="form-control" type="text" th:field="*{name}" />
 							</div>
 							<div class="form-label-group">
-								<label for="sets">Set count</label> <input class="form-control"
+								<label for="sets">New set count</label> <input class="form-control"
 									type="text" th:field="*{sets}" />
 							</div>
 							<div class="form-label-group">
-								<label for="reps">Rep count</label> <input class="form-control"
+								<label for="reps">New rep count</label> <input class="form-control"
 									type="text" th:field="*{reps}" />
 							</div>
 							<div class="form-label-group">
 								<label for="daylist">Day</label> <select id="daylist"
-								 th:field="*{weekday}" class="form-control">
+								 class="form-control">
 									<option th:each="weekday: ${weekdays}"
 										th:value="${weekday}" th:text="${weekday}"></option>
 								</select>
 							</div>
-							<input type="submit" class="btn btn-primary " value="Save"></input>
+							<input type="submit" class="btn btn-success" value="Save"></input>
 						</form>
 					</div>
 				</div>

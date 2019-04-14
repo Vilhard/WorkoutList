@@ -7,7 +7,6 @@ public class ExercisePojo {
 	private int sets, reps;
 	private String weekday;
 	
-	
 	public Long getId() {
 		return id;
 		

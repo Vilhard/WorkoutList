@@ -15,20 +15,6 @@
 	color: #333;
 }
 
-.article-list_titlebar {
-	align-items: center;
-	box-sizing: border-box;
-	line-height: 1.42857143;
-	color: #333;
-	flex-wrap: wrap;
-	padding-top: 15px;
-	padding-right: 15px;
-	padding-bottom: 15px;
-	padding-left: 15px;
-	font-family: 'Montserrat';
-	font-size: 18px;
-}
-
 .article-list_content-wrapper {
 	border-top-width: 1px;
 	border-top-style: solid;
@@ -77,27 +63,10 @@ th, td {
 	text-decoration-line: none;
 	text-decoration-style: initial;
 	text-decoration-color: initial;
-	display: block;
-	padding-top: 6px;
-	padding-right: 0px;
-	padding-bottom: 6px;
-	padding-left: 0px;
 	line-height: 1em;
 	box-sizing: border-box;
 	outline-color: initial;
 	outline-style: initial;
 	outline-width: 0px;
-}
-
-.article-workout_sets-definition {
-	box-sizing: border-box;
-	margin-top: 10px;
-	margin-right: 0px;
-	margin-bottom: 10px;
-	margin-left: 0px;
-	line-height: 1em;
 	font-family: 'Montserrat';
-	font-size: 15px;
-	color: #333;
-	box-sizing: border-box;
 }

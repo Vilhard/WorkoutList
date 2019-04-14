@@ -5,6 +5,14 @@ public enum Weekday {
 
 	private Long numVal;
 
+	Weekday(Long numVal) {
+		this.numVal = numVal;
+	}
+
+	public long getNumVal() {
+		return numVal;
+	}
+	
 	public static String getByValue(Long value) {
 		if (value == null)
 			return null;
@@ -41,13 +49,5 @@ public enum Weekday {
 		if("Sunnuntai".equals(Name))	
 			return 7L;
 		return null;
-	}
-	
-	Weekday(Long numVal) {
-		this.numVal = numVal;
-	}
-
-	public long getNumVal() {
-		return numVal;
 	}
 }
