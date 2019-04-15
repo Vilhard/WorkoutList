@@ -1,49 +1,54 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<title>Workout list</title>
+<title>Exercise list</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-	 <!-- Custom styles for this template -->
-    <link href="css/cover.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+<link href="https://fonts.googleapis.com/css?family=Montserrat"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
-<body class="text-center">
-
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-      <header class="masthead mb-auto">
-        <div class="inner">
-          <h2 class="masthead-brand">MyFitnessLog</h2>
-        </div>
-      </header>
-
-      <main role="main" class="inner cover">
-        <h1 class="cover-heading">Hello!</h1>
-        <p class="lead">MyFitnessLog is a journal, notebook and an application that helps you keep track of your training so that each session is effective.</p>
-        <p class="lead">
-          <a href="/login" class="btn btn-lg btn-secondary">Login</a>
-        </p>
-      </main>
-
-      <footer class="mastfoot mt-auto">
-        <div class="inner">
-          <p>Home page for MyFitnessLog</p>
-        </div>
-      </footer>
-    </div>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-  </body>
+<body>
+	<nav class="navbar navbar-dark bg-primary ">
+		<span class="navbar-brand mb-0 h1">MyFitnessLife</span>
+		<p class="navbar-brand mb-0 h1" th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</p>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-primary"/>
+		</form>
+		<a href="/add" class="btn btn-primary navbar-brand mb-0 h1">Add Exercise</a>
+	</nav>
+	<div class="container">
+		<div class="article-list_container">
+			<div
+				class="article-list_segment article-list_titlebar article-list_content-wrapper">
+				<table>
+					<thead>
+						<tr>
+							<th class="article-list_titlebar">Day</th>
+							<th class="article-list_titlebar">Exercise</th>
+							<th class="article-list_titlebar">Sets</th>
+							<th class="article-list_titlebar">Reps</th>
+						</tr>
+					</thead>
+					<!-- Iterating through exercises -->
+					<tr th:each="exercise : ${exercises}">  
+						<td  class="article-workout_exercise-info" th:text="${exercise.weekday}"></td>
+						<td class="article-workout_exercise-title "
+							th:text="${exercise.name}"></td>
+						<td class="article-workout_exercise-info"
+							th:text="${exercise.sets}"></td>
+						<td class="article-workout_exercise-info"th:text="${exercise.reps}"></td>
+						<td class="article-workout_exercise-info"><a th:href="@{/delete/{id}(id=${exercise.id})}"  class="btn btn-outline-danger btn-sm">Delete</a></td>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
 </html>

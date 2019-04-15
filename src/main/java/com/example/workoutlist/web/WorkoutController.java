@@ -27,10 +27,10 @@ public class WorkoutController {
 	private ExerciseRepository erepository;
 
 	// Show home page
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public ModelAndView home() {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("home");
+		model.setViewName("index");
 		return model;
 	}
 
@@ -40,15 +40,17 @@ public class WorkoutController {
 		return "login";
 	}
 
-	// Order exercises by id
-	@RequestMapping("/index")
-	public String index(Model model) {
-		List<Exercise> exercises = erepository.findAllOrderByWeekdayid();
-		model.addAttribute("exercises", exercise2exercisePojo(exercises));
-		return "index";
-	}
-
 	// Map ExcercisePojo to Entity
+	private Exercise exercisePojo2exercise(ExercisePojo exercisepojo) {
+		Exercise exe = new Exercise();
+		exe.setId(exercisepojo.getId());
+		exe.setName(exercisepojo.getName());
+		exe.setReps(exercisepojo.getReps());
+		exe.setSets(exercisepojo.getSets());
+		exe.setDay(Weekday.getByName(exercisepojo.getWeekday()));
+		return exe;
+	};
+
 	private List<ExercisePojo> exercise2exercisePojo(List<Exercise> exercises) {
 		List<ExercisePojo> returnList = new ArrayList<>();
 		for (Exercise e : exercises) {
@@ -63,15 +65,13 @@ public class WorkoutController {
 		return returnList;
 	};
 
-	private Exercise exercisePojo2exercise(ExercisePojo exercise) {
-		Exercise exe = new Exercise();
-		exe.setId(exercise.getId());
-		exe.setName(exercise.getName());
-		exe.setReps(exercise.getReps());
-		exe.setSets(exercise.getSets());
-		exe.setDay(Weekday.getByName(exercise.getWeekday()));
-		return exe;
-	};
+	// Order exercises by id
+	@RequestMapping("/home")
+	public String index(Model model) {
+		List<Exercise> exercises = erepository.findAllOrderByWeekdayid();
+		model.addAttribute("exercises", exercise2exercisePojo(exercises));
+		return "home";
+	}
 
 	// Add new exercise
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -92,22 +92,22 @@ public class WorkoutController {
 
 	// Save exercise to database
 	@PostMapping("/save")
-	public String save(ExercisePojo exercise) {
-		Exercise exercisee = exercisePojo2exercise(exercise);
+	public String save(ExercisePojo exercisepojo) {
+		Exercise exercisee = exercisePojo2exercise(exercisepojo);
 		erepository.save(exercisee);
-		return "redirect:index";
+		return "redirect:home";
 	}
 
 	// Delete Exercise by id
 	@GetMapping("/delete/{id}")
 	public String deleteExercise(@PathVariable("id") Long id, Model model) {
 		erepository.deleteById(id);
-		return "redirect:../index";
+		return "redirect:../home";
 	}
 
 	// REST get all exercises
 	@GetMapping("/exercises")
-	public @ResponseBody List<Exercise> ExerciseListRest() {
+	public @ResponseBody List<Exercise> ListRest() {
 		return (List<Exercise>) erepository.findAll();
 	}
 
