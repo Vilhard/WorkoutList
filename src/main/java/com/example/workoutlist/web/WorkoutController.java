@@ -48,7 +48,7 @@ public class WorkoutController {
 		return "index";
 	}
 
-	// Map ExcerciePojo to Entity
+	// Map ExcercisePojo to Entity
 	private List<ExercisePojo> exercise2exercisePojo(List<Exercise> exercises) {
 		List<ExercisePojo> returnList = new ArrayList<>();
 		for (Exercise e : exercises) {
@@ -63,13 +63,13 @@ public class WorkoutController {
 		return returnList;
 	};
 
-	private Exercise exercisePojo2exercise(ExercisePojo excercise) {
+	private Exercise exercisePojo2exercise(ExercisePojo exercise) {
 		Exercise exe = new Exercise();
-		exe.setId(excercise.getId());
-		exe.setName(excercise.getName());
-		exe.setReps(excercise.getReps());
-		exe.setSets(excercise.getSets());
-		exe.setDay(Weekday.getByName(excercise.getWeekday()));
+		exe.setId(exercise.getId());
+		exe.setName(exercise.getName());
+		exe.setReps(exercise.getReps());
+		exe.setSets(exercise.getSets());
+		exe.setDay(Weekday.getByName(exercise.getWeekday()));
 		return exe;
 	};
 
@@ -90,23 +90,6 @@ public class WorkoutController {
 		return "add";
 	}
 
-	// Edit exercise
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String editExercise(@PathVariable("id") Long id, Model model) {
-		List<String> weekdays = new ArrayList<>();
-		weekdays.add("Maanantai");
-		weekdays.add("Tiistai");
-		weekdays.add("Keskiviikko");
-		weekdays.add("Torstai");
-		weekdays.add("Perjantai");
-		weekdays.add("Lauantai");
-		weekdays.add("Sunnuntai");
-		model.addAttribute("weekdays", weekdays);
-		model.addAttribute("exercisepojo", erepository.findById(id));
-		model.addAttribute("exercise", new ExercisePojo());
-		return "edit";
-	}
-
 	// Save exercise to database
 	@PostMapping("/save")
 	public String save(ExercisePojo exercise) {
@@ -124,13 +107,13 @@ public class WorkoutController {
 
 	// REST get all exercises
 	@GetMapping("/exercises")
-	public @ResponseBody List<Exercise> bookListRest() {
+	public @ResponseBody List<Exercise> ExerciseListRest() {
 		return (List<Exercise>) erepository.findAll();
 	}
 
 	// REST get exercise by id
 	@GetMapping("/exercise/{id}")
-	public @ResponseBody Optional<Exercise> findBookRest(@PathVariable("id") Long id) {
+	public @ResponseBody Optional<Exercise> findExerciseRest(@PathVariable("id") Long id) {
 		return erepository.findById(id);
 	}
 }

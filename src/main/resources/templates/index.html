@@ -45,9 +45,7 @@
 						<td class="article-workout_exercise-info"
 							th:text="${exercise.sets}"></td>
 						<td class="article-workout_exercise-info"th:text="${exercise.reps}"></td>
-						<!-- Delete and Edit for exercise -->
 						<td class="article-workout_exercise-info"><a th:href="@{/delete/{id}(id=${exercise.id})}"  class="btn btn-outline-danger btn-sm">Delete</a></td>
-						<td class="article-workout_exercise-info"><a th:href="@{/edit/{id}(id=${exercise.id})}" class="btn btn-outline-success btn-sm">Edit</a></td>	
 				</table>
 			</div>
 		</div>
